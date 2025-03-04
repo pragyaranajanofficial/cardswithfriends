@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards With Friends - Card Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loading" class="overlay hidden">
+        <div class="loading-box">
+            <h2>Loading Game...</h2>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <div id="age-verification" class="overlay">
+        <div class="verification-box">
+            <h2>Age Verification</h2>
+            <p>You must be 16 or older to play this game.</p>
+            <input type="date" id="birthdate" required>
+            <button onclick="verifyAge()">Enter Game</button>
+        </div>
+    </div>
+
+    <div id="game-container" class="hidden">
+        <header>
+            <h1>Cards With Friends</h1>
+            <div class="game-info">
+                <div class="score">Score: <span id="score">0</span></div>
+                <div class="timer">Time: <span id="time">00:00</span></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <div class="opponent-section">
+                    <div class="opponent-info">
+                        <span class="opponent-name">Computer</span>
+                        <span class="opponent-cards">Cards: <span id="opponent-card-count">5</span></span>
+                    </div>
+                    <div class="opponent-hand" id="opponent-hand"></div>
+                </div>
+
+                <div class="table-area">
+                    <div class="played-cards" id="played-cards"></div>
+                    <div class="deck-area">
+                        <div class="deck" id="deck"></div>
+                        <div class="discard-pile" id="discard-pile"></div>
+                    </div>
+                </div>
+
+                <div class="player-section">
+                    <div class="player-hand" id="player-hand"></div>
+                    <div class="player-info">
+                        <span class="player-name">Player</span>
+                        <div class="controls">
+                            <button id="draw-card">Draw Card</button>
+                            <button id="end-turn">End Turn</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="game-over" class="overlay hidden">
+        <div class="game-over-box">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <button onclick="restartGame()">Play Again</button>
+        </div>
+    </div>
+<!-- Add before the footer -->
+    <div class="info-section">
+        <div class="info-container">
+            <h2>About Cards With Friends</h2>
+            <div class="info-content">
+                <div class="game-rules">
+                    <h3>Game Rules</h3>
+                    <ul>
+                        <li>Each player starts with 5 cards</li>
+                        <li>Play cards strategically to score points</li>
+                        <li>Face cards (J, Q, K) are worth 10 points</li>
+                        <li>Ace is worth 11 points</li>
+                        <li>Number cards are worth their face value</li>
+                        <li>Game ends when either player runs out of cards</li>
+                    </ul>
+                </div>
+                <div class="developer-info">
+                    <h3>Developer Information</h3>
+                    <div class="dev-details">
+                        <div class="dev-text">
+                            <p>Developed by: Pragya Ranjan</p>
+                            <p>GraphicBird™ © 2024 Pragya Ranjan. All rights reserved.</p>
+                            <p>Contact: graphicbird@proton.me</p>
+                            <p>Website: <a href="https://pkp6.godaddysites.com" target="_blank">pkp6.godaddysites.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

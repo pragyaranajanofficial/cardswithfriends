@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a1c2c 0%, #2a3c54 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.verification-box, .game-over-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.verification-box input, 
+.verification-box button,
+.game-over-box button {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.loading-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+}
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-top: 5px solid #ff6b6b;
+    border-radius: 50%;
+    margin: 1rem auto;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.hidden {
+    display: none !important;
+}
+header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+.game-area {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+.opponent-section, 
+.player-section {
+    padding: 1rem;
+    text-align: center;
+}
+.table-area {
+    min-height: 300px;
+    background: rgba(42, 42, 42, 0.6);
+    border-radius: 20px;
+    margin: 2rem 0;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.played-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 220px;
+}
+.player-hand, 
+.opponent-hand {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 220px;
+}
+.card {
+    width: 140px;
+    height: 200px;
+    position: relative;
+    perspective: 1000px;
+    margin: 8px;
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-10px);
+}
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+.card-front, 
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.card-front {
+    transform: rotateY(180deg);
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.card-back {
+    background-image: url('https://opengameart.org/sites/default/files/card%20back%20red.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #2a3c54;
+}
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+.controls {
+    margin-top: 1rem;
+}
+.controls button {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.credits {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.credits p {
+    margin: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+.credits a {
+    color: #ff6b6b;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.credits a:hover {
+    color: #ff8e8e;
+}
+@keyframes dealCard {
+    from {
+        transform: translateX(100vw) rotate(720deg) scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) rotate(0) scale(1);
+        opacity: 1;
+    }
+}
+.dealing {
+    animation: dealCard 0.5s ease-out;
+}
+@keyframes playCard {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2) translateY(-30px); }
+    100% { transform: scale(1) translateY(0); }
+}
+.played-card {
+    animation: playCard 0.3s ease-out;
+}
+@media (max-width: 768px) {
+    .game-area {
+        padding: 0.5rem;
+    }
+    .card {
+        width: 100px;
+        height: 140px;
+    }
+    .controls button {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
